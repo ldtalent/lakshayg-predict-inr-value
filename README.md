@@ -13,7 +13,7 @@ Before starting make sure you have the following installed on your system:
 Step 1. Clone this repository
 ``` git clone https://github.com/learningdollars/lakshayg-predict-inr-value.git ```
 
-Step 2. ``` cd lakshayg-google-trends-graphs/apibackend/  ```
+Step 2. ``` cd lakshayg-predict-inr-value/apibackend/  ```
 
 Step 3. Install all the dependencies
 ``` npm install --save ```
