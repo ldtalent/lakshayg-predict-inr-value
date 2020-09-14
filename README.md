@@ -26,7 +26,7 @@ Step 1. ``` cd lakshayg-predict-inr-value/  ```
 Step 2. Install all the dependencies
 ``` npm install --save ```
 
-Step 3. Run the application ```npm run dev```
+Step 3. Run the application ```npm run start```
 
 This is how the application will look like
 <br/>
