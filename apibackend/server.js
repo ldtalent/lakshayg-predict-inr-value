@@ -5,6 +5,7 @@ var app = express()
 const cors = require('cors')
 app.use(cors())
 var trainingData = []
+var testingData = []
 var maxClose = Math.max.apply(Math, data.map(function(o) {
     return o.Close
 }));
@@ -17,7 +18,7 @@ var maxLow = Math.max.apply(Math, data.map(function(o) {
 var maxOpen = Math.max.apply(Math, data.map(function(o) {
     return o.Open
 }));
-for (var i = 0; i < data.length; i++) {
+for (var i = 0; i < 0.9*data.length; i++) {
     var input = [new Date(data[i].Date).getTime() / new Date().getTime(), data[i].High / maxHigh, data[i].Low / maxLow, data[i].Open / maxOpen]
     var output = [data[i].Close / maxClose]
 
@@ -26,13 +27,30 @@ for (var i = 0; i < data.length; i++) {
         'output': output
     })
 }
+
 const net = new brain.NeuralNetwork()
 
 app.listen(process.env.PORT || 3001, async () => {
     net.train(trainingData)
+   
     console.log('Server started')
 })
 
+
+app.get('/predicted', async (req, res) => {
+   
+    for (var i = parseInt(0.9*data.length); i < data.length; i++) {
+        var predict = net.run([new Date(data[i].Date).getTime() / new Date().getTime(), data[i].High / maxHigh, data[i].Low / maxLow, data[i].Open / maxOpen])
+        var actual = data[i].Close
+        testingData.push({
+            'Date':data[i].Date,
+            'predicted':predict*maxClose,
+            'actual':actual
+        })
+    }
+    console.log(testingData)
+    res.json(testingData)
+})
 
 app.get('/:days', async (req, res) => {
 
@@ -56,3 +74,6 @@ app.get('/:days', async (req, res) => {
         'result': output[0] * maxClose
     })
 })
+
+
+
