@@ -30,4 +30,4 @@ Step 3. Run the application ```npm run start```
 
 This is how the application will look like
 <br/>
-<img src="https://i.ibb.co/0FsFpTD/Screenshot-701.png" alt="How to build an INR value predictor against 1 USD using brainjs" border="0">
+<img src="https://i.ibb.co/QC1XYrb/Screenshot-708.png" alt="How to build an INR value predictor against 1 USD using brainjs" border="0">
